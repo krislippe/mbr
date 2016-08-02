@@ -17,7 +17,7 @@ def hello():
         },
         { 
             'author': {'nickname': 'Susan'}, 
-            'body': 'The weather is nice!' 
+            'body': 'The weather is warm!!' 
         }
     ]
     return render_template("index.html",
