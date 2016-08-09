@@ -63,8 +63,6 @@ class s3_helper():
             if i % table_size == 0:
                 self.s3_html.append('<tr>')
 
-            #tablerow = "<td><img src=\"%s%s\"/></td><td>%s</td><td>%s</td><td>%s</td>" % (self.s3server, pic, name, desc, size)
-            #self.s3_html.append(tablerow)
             self.s3_html.append("<td><table border=0 width=\"100%\"><tr><th bgcolor=\"#DCDCDC\" colspan=2>" + name + "</th></tr>")
             self.s3_html.append("<tr><td rowspan=2 width=200px><img src=\"" + self.s3server + pic + "\"></td>")
             self.s3_html.append("<td valign=\"middle\">" + desc + "</td></tr><tr><td valign=\"middle\">" + size + "</td></tr></table></td>")
