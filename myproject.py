@@ -65,7 +65,7 @@ class s3_helper():
 
             self.s3_html.append("<td><table border=0 width=\"100%\"><tr><th bgcolor=\"#DCDCDC\" colspan=2>" + name + "</th></tr>")
             self.s3_html.append("<tr><td rowspan=2 width=200px><img src=\"" + self.s3server + pic + "\"></td>")
-            self.s3_html.append("<td valign=\"middle\">" + desc + "</td></tr><tr><td valign=\"middle\">" + size + "</td></tr></table></td>")
+            self.s3_html.append("<td valign=\"middle\">" + desc + "</td></tr><tr><td bgcolor=\"E8E8E8\" valign=\"middle\">" + size + "</td></tr></table></td>")
 
             if i % table_size == table_size-1 or i == (len(self.s3_images) - 1):
                 self.s3_html.append('</tr>')
@@ -85,7 +85,7 @@ def cached():
     s3c.load(3)
 
     # current date
-    user = {'nickname': 'Kris'}
+    msg = "This website uses CloudFront to cache S3 objects"
     time = str(now)
 
     # grab local images
@@ -115,7 +115,7 @@ def cached():
     # off to gunicorn
     return render_template("index.html",
                            title='Home',
-                           user=user,
+                           msg=msg,
                            time=time,
                            s3_images=s3c.s3_html,
                            local_images=local_html)
@@ -125,10 +125,10 @@ def cached():
 def uncached():
     now = datetime.now()
     s3c = s3_helper('lippe-mbr')
-    s3c.load(5)
+    s3c.load(4)
 
     # current date
-    user = {'nickname': 'Kris'}
+    msg = "This website does not cache S3 objects"
     time = str(now)
 
     # grab local images
@@ -158,7 +158,7 @@ def uncached():
     # off to gunicorn
     return render_template("index.html",
                            title='Home',
-                           user=user,
+                           msg=msg,
                            time=time,
                            s3_images=s3c.s3_html,
                            local_images=local_html)
