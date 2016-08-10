@@ -5,7 +5,7 @@ firehose = boto3.client('firehose')
 with open('/Users/lippek/Documents/weblogs/aws-big-data', 'r') as f:
     for line in f:
         firehose.put_record(
-                DeliveryStreamName='demo-firehose-stream',
+                DeliveryStreamName='MBRwebstream',
                 Record={'Data': line}
                 )
         print 'Record added'
