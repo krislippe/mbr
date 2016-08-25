@@ -35,11 +35,10 @@ sortedMap = pageReducedMap.map(lambda x: (x[1], x[0])).sortByKey(False)
 ### reverse the key and number
 sortedMap = sortedMap.map(lambda x:(x[1], x[0]))
 
-# write back to S3
+# write back to S3 via dataframe
 df = sqlContext.createDataFrame(sortedMap, ["source", "hits"])
 filename = "s3n://lippe-mbr-elb/parsed-output2"
 
 # create 5 partitions (output files)
 df = df.repartition(5)
-
 df.write.mode('overwrite').json(filename)
